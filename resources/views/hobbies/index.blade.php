@@ -19,7 +19,9 @@
                                 <th>Id</th>
                                 <th>Nombre</th>
                                 <th>Usuario</th>
+                                @if (Auth::user()->authorizeView("administrador"))
                                 <th>Acciones</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -28,11 +30,11 @@
                                     <td>{{$hobby->id}}</td>
                                     <td>{{$hobby->name}}</td>
                                     <td>{{$hobby->user}}</td>
-                                <td>
                                     @if (Auth::user()->authorizeView("administrador"))
-                                        <a href="/hobby/{{$hobby->slug}}/edit" class="btn btn-primary">Editar</a>
-                                    @endif
+                                <td>
+                                    <a href="/hobby/{{$hobby->slug}}/edit" class="btn btn-primary">Editar</a>
                                 </td>
+                                @endif
                                 </tr>
                             @endforeach
                         </tbody>

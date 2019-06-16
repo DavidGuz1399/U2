@@ -61,8 +61,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(Request $request ,User $user)
     {
+        if ($request->user()!=null) {
+            $request->user()->authorizeRoles("administrador");
+        }else{
+            abort(401,'This action is unauthorized');
+        }
         return view('users.edit',compact('user'));
     }
 

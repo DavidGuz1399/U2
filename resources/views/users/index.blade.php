@@ -15,7 +15,9 @@
                                 <th>Nombre de usuario</th>
                                 <th>Correo</th>
                                 <th>Ciudad</th>
+                                @if (Auth::user()->authorizeView("administrador"))
                                 <th>Acciones</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -26,7 +28,9 @@
                                     <td>{{$user->user_name}}</td>
                                     <td>{{$user->email}}</td>
                                     <td>{{$user->city}}</td>
+                                    @if (Auth::user()->authorizeView("administrador"))
                                     <td><a href="/user/{{$user->slug}}/edit" class="btn btn-primary">Editar</a></td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>
